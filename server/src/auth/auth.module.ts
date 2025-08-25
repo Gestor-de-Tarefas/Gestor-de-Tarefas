@@ -6,6 +6,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { UserModule } from 'src/user/user.module';
 
+// Importando variáveis de ambiente
 @Module({
   imports: [
     JwtModule.registerAsync({

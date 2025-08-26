@@ -8,12 +8,14 @@ import { AuthService } from './auth.service';
 export class AuthController {
   constructor(private readonly authservice: AuthService) {}
 
+  // rota de login
   @HttpCode(HttpStatus.OK)
   @Post('login')
-  singIn(
+  async singIn(
     @Body('email') email: string,
     @Body('password') password: string,
-  ): AuthDTO {
-    return this.authservice.singIn(email, password);
+  ): Promise<AuthDTO> {
+    const JWT = this.authservice.singIn(email, password);
+    return JWT;
   }
 }

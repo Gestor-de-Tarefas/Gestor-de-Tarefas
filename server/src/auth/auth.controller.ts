@@ -15,7 +15,7 @@ export class AuthController {
     @Body('email') email: string,
     @Body('password') password: string,
   ): Promise<AuthDTO> {
-    const JWT = this.authservice.singIn(email, password);
+    const JWT = this.authservice.signIn(email, password);
     return JWT;
   }
 }

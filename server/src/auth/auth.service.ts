@@ -3,7 +3,7 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { compareSync as bcryptCompareSync } from 'bcrypt';
-import { UserService } from 'src/user/user.service';
+import { UserService } from '../user/user.service';
 import { AuthDTO } from './auth.DTO';
 import { ConfigService } from '@nestjs/config';
 
@@ -23,7 +23,7 @@ export class AuthService {
   }
 
   // Função de login
-  async singIn(email: string, password: string): Promise<AuthDTO> {
+  async signIn(email: string, password: string): Promise<AuthDTO> {
     // Procurando usuário existente no banco
     const founduser = await this.userService.findByEamil(email);
 

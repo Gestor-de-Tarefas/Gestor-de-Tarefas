@@ -20,6 +20,8 @@ model User {
 model Time {
   id        String @id
   Name      String 
+  id_user   String
+  user User @relation(fields: [id_user], references: [id])
   UserTimes UserTimes[]
 }
 

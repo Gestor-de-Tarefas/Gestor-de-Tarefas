@@ -1,5 +1,5 @@
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
   binaryTargets = ["native", "debian-openssl-3.0.x"]
 }
 
@@ -8,17 +8,26 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
-enum TypeUser {
-  ADM 
-  GES 
-  COL 
+model User {
+  id        String @id
+  Name      String
+  Email     String @unique
+  Password  String
+  Type      String
+  UserTimes UserTimes[]
 }
 
-model User {
-  id       String    @id 
-  Name     String
-  Email    String   @unique
-  Password String
-  Type     TypeUser
+model Time {
+  id        String @id
+  Name      String 
+  UserTimes UserTimes[]
+}
+
+model UserTimes {
+  id        String @id
+  id_user   String
+  id_time   String
+
+  user User @relation(fields: [id_user], references: [id])
+  time Time @relation(fields: [id_time], references: [id])
 }
